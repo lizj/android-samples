@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu1" android:alphabeticShortcut="a"
+        android:title="Menu No. 1" android:orderInCategory="1" />
+    <item android:id="@+id/menu2" android:alphabeticShortcut="b"
+        android:title="Menu No. 2" android:orderInCategory="2">
+        <menu >
+        <group android:id="@+id/group2" android:checkableBehavior="single">
+            <item android:id="@+id/submenu1" android:title="SubMenu No. 1" />
+            <item android:id="@+id/submenu2" android:title="SubMenu No. 2" />
+        </group>   
+        </menu>
+    </item>
+</menu>
