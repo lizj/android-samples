@@ -1,178 +1,141 @@
 package lizj.fragmento;
 
-import java.util.Locale;
+import lizj.fragmento.lib.CompatTab;
+import lizj.fragmento.lib.CompatTabListener;
+import lizj.fragmento.lib.TabCompatActivity;
+import lizj.fragmento.lib.TabHelper;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements
-		ActionBar.TabListener {
-
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
-
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
-	ViewPager mViewPager;
+public class MainActivity extends TabCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		// Set up the action bar.
-		final ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		TabHelper tabHelper = getTabHelper();
 
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(
-				getSupportFragmentManager());
+		CompatTab homeTab = tabHelper
+				.newTab("home")
+				.setText(R.string.title_section1)
+				.setIcon(R.drawable.icon_home)
+				.setTabListener(
+						new InstantiatingTabListener(this, HomeFragment.class));
+		tabHelper.addTab(homeTab);
 
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
+		CompatTab bagTab = tabHelper
+				.newTab("bag")
+				.setText(R.string.title_section2)
+				.setIcon(R.drawable.icon_bag)
+				.setTabListener(
+						new InstantiatingTabListener(this, BagFragment.class));
+		tabHelper.addTab(bagTab);
 
-		// When swiping between different sections, select the corresponding
-		// tab. We can also use ActionBar.Tab#select() to do this if we have
-		// a reference to the Tab.
-		mViewPager
-				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-					@Override
-					public void onPageSelected(int position) {
-						actionBar.setSelectedNavigationItem(position);
-					}
-				});
-
-		// For each of the sections in the app, add a tab to the action bar.
-		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-			// Create a tab with text corresponding to the page title defined by
-			// the adapter. Also specify this Activity object, which implements
-			// the TabListener interface, as the callback (listener) for when
-			// this tab is selected.
-			actionBar.addTab(actionBar.newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
-		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public void onTabSelected(ActionBar.Tab tab,
-			FragmentTransaction fragmentTransaction) {
-		// When the given tab is selected, switch to the corresponding page in
-		// the ViewPager.
-		mViewPager.setCurrentItem(tab.getPosition());
-	}
-
-	@Override
-	public void onTabUnselected(ActionBar.Tab tab,
-			FragmentTransaction fragmentTransaction) {
-	}
-
-	@Override
-	public void onTabReselected(ActionBar.Tab tab,
-			FragmentTransaction fragmentTransaction) {
+		CompatTab styleTab = tabHelper
+				.newTab("bag")
+				.setText(R.string.title_section3)
+				.setIcon(R.drawable.icon_style)
+				.setTabListener(
+						new InstantiatingTabListener(this, StyleFragment.class));
+		tabHelper.addTab(styleTab);
 	}
 
 	/**
-	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-	 * one of the sections/tabs/pages.
+	 * Implementation of {@link CompatTabListener} to handle tab change events.
+	 * This implementation instantiates the specified fragment class with no
+	 * arguments when its tab is selected.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	public static class InstantiatingTabListener implements CompatTabListener {
 
-		public SectionsPagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
+		private final TabCompatActivity mActivity;
+		private final Class mClass;
 
-		@Override
-		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
-		}
-
-		@Override
-		public int getCount() {
-			// Show 4 total pages.
-			return 4;
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			Locale l = Locale.getDefault();
-			switch (position) {
-			case 0:
-				return getString(R.string.title_section1).toUpperCase(l);
-			case 1:
-				return getString(R.string.title_section2).toUpperCase(l);
-			case 2:
-				return getString(R.string.title_section3).toUpperCase(l);
-			case 3:
-				return getString(R.string.title_section4).toUpperCase(l);
-			}
-			
-			return null;
-		}
-	}
-
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
-	public static class DummySectionFragment extends Fragment {
 		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
+		 * Constructor used each time a new tab is created.
+		 * 
+		 * @param activity
+		 *            The host Activity, used to instantiate the fragment
+		 * @param cls
+		 *            The class representing the fragment to instantiate
 		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-
-		public DummySectionFragment() {
+		public InstantiatingTabListener(TabCompatActivity activity,
+				Class<? extends Fragment> cls) {
+			mActivity = activity;
+			mClass = cls;
 		}
+
+		/* The following are each of the ActionBar.TabListener callbacks */
+		@Override
+		public void onTabSelected(CompatTab tab, FragmentTransaction ft) {
+			// Check if the fragment is already initialized
+			Fragment fragment = tab.getFragment();
+			if (fragment == null) {
+				// If not, instantiate and add it to the activity
+				fragment = Fragment.instantiate(mActivity, mClass.getName());
+				tab.setFragment(fragment);
+				ft.add(android.R.id.tabcontent, fragment, tab.getTag());
+			} else {
+				// If it exists, simply attach it in order to show it
+				ft.attach(fragment);
+			}
+		}
+
+		@Override
+		public void onTabUnselected(CompatTab tab, FragmentTransaction ft) {
+			Fragment fragment = tab.getFragment();
+			if (fragment != null) {
+				// Detach the fragment, because another one is being attached
+				ft.detach(fragment);
+			}
+		}
+
+		@Override
+		public void onTabReselected(CompatTab tab, FragmentTransaction ft) {
+			// User selected the already selected tab. Do nothing.
+		}
+	}
+
+	public static class HomeFragment extends Fragment {
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
-					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
-			return rootView;
+			TextView textView = new TextView(getActivity());
+			textView.setGravity(Gravity.CENTER);
+			textView.setText(R.string.title_section1);
+			return textView;
+		}
+	}
+
+	public static class BagFragment extends Fragment {
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			TextView textView = new TextView(getActivity());
+			textView.setGravity(Gravity.CENTER);
+			textView.setText(R.string.title_section2);
+			return textView;
+		}
+	}
+
+	public static class StyleFragment extends Fragment {
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			TextView textView = new TextView(getActivity());
+			textView.setGravity(Gravity.CENTER);
+			textView.setText(R.string.title_section3);
+			return textView;
 		}
 	}
 
