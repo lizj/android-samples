@@ -26,7 +26,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
 /**
- * Helper class to build tabs on Honeycomb. Call {@link TabCompatActivity#getTabHelper()}
+ *Helper class to build tabs on Honeycomb. Call {@link TabCompatActivity#getTabHelper()}
  * to get the generic instance for compatibility with older versions.
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)

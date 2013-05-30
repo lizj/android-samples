@@ -20,11 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
-/**
- * Represents a single tab.
- * The {@link TabHelper} initializes one of the subclasses of this based
- * on the current platform version, upon call to {@link TabHelper#newTab(String)}()
- */
+
 public abstract class CompatTab {
     final FragmentActivity mActivity;
     final String mTag;

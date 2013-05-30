@@ -28,7 +28,7 @@ import android.widget.TabHost.TabSpec;
 import java.util.HashMap;
 
 /**
- * This is a helper class to build tabs on pre-Honeycomb. Call {@link
+ * his is a helper class to build tabs on pre-Honeycomb. Call {@link
  * TabCompatActivity#getTabHelper()} to get the generic instance for
  * compatibility with other versions.
  *

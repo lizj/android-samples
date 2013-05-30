@@ -20,9 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
-/**
- * A base implementation of the {@link CompatTab} interface.
- */
+
 public class CompatTabEclair extends CompatTab {
     private CompatTabListener mCallback;
     private CharSequence mText;

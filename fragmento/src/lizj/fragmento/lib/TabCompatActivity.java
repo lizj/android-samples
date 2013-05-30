@@ -20,7 +20,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 /**
- * A base activity that defers tab functionality to a {@link TabHelper}.
+ *  base activity that defers tab functionality to a {@link TabHelper}.
  *
  * When building an activity with tabs, extend this class in order to provide compatibility with API
  * level 5 and above. Using this class along with the {@link TabHelper} and {@link com.example.android.tabcompat.lib.CompatTab}

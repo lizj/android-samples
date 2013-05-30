@@ -21,7 +21,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 /**
- * Convenience helper to build a set of tabs for a {@link TabCompatActivity}. To use this class,
+ *Convenience helper to build a set of tabs for a {@link TabCompatActivity}. To use this class,
  * extend {@link TabCompatActivity} and:
  *
  * Call {@link TabCompatActivity#getTabHelper()}, returning a {@link TabHelper}.

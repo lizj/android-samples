@@ -25,9 +25,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
-/**
- * An implementation of the {@link CompatTab} interface that relies on API 11 APIs.
- */
+
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class CompatTabHoneycomb extends CompatTab implements ActionBar.TabListener {
 

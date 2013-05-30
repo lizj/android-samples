@@ -18,9 +18,7 @@ package lizj.fragmento.lib;
 
 import android.support.v4.app.FragmentTransaction;
 
-/**
- * @see android.app.ActionBar.TabListener
- */
+
 public interface CompatTabListener {
     /**
      * @see android.app.ActionBar.TabListener#onTabSelected(
