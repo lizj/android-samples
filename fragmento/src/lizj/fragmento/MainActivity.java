@@ -103,40 +103,40 @@ public class MainActivity extends TabCompatActivity {
 		}
 	}
 
-	public static class HomeFragment extends Fragment {
+//	public static class HomeFragment extends Fragment {
+//
+//		@Override
+//		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//				Bundle savedInstanceState) {
+//			TextView textView = new TextView(getActivity());
+//			textView.setGravity(Gravity.CENTER);
+//			textView.setText(R.string.title_section1);
+//			return textView;
+//		}
+//	}
 
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			TextView textView = new TextView(getActivity());
-			textView.setGravity(Gravity.CENTER);
-			textView.setText(R.string.title_section1);
-			return textView;
-		}
-	}
-
-	public static class BagFragment extends Fragment {
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			TextView textView = new TextView(getActivity());
-			textView.setGravity(Gravity.CENTER);
-			textView.setText(R.string.title_section2);
-			return textView;
-		}
-	}
-
-	public static class StyleFragment extends Fragment {
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			TextView textView = new TextView(getActivity());
-			textView.setGravity(Gravity.CENTER);
-			textView.setText(R.string.title_section3);
-			return textView;
-		}
-	}
+//	public static class BagFragment extends Fragment {
+//
+//		@Override
+//		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//				Bundle savedInstanceState) {
+//			TextView textView = new TextView(getActivity());
+//			textView.setGravity(Gravity.CENTER);
+//			textView.setText(R.string.title_section2);
+//			return textView;
+//		}
+//	}
+//
+//	public static class StyleFragment extends Fragment {
+//
+//		@Override
+//		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//				Bundle savedInstanceState) {
+//			TextView textView = new TextView(getActivity());
+//			textView.setGravity(Gravity.CENTER);
+//			textView.setText(R.string.title_section3);
+//			return textView;
+//		}
+//	}
 
 }
